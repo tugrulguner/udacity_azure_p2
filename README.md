@@ -9,6 +9,11 @@ Aside from this approach, using notebook, I am creating, publishing and consumin
 
 ## Architectural Diagram
 
+
+
+
+## Key Steps
+
 * First, data is uploaded from given URL
 ![Data uploaded](/screenshots/image1.png)
 
@@ -22,10 +27,11 @@ Here is the REST endpoint
 And here is the logging retrieval
 ![RLogging retrieval](/screenshots/image4.png)
 
-*TODO*: Provide an architectual diagram of the project and give an introduction of each step. An architectural diagram is an image that helps visualize the flow of operations from start to finish. In this case, it has to be related to the completed project, with its various stages that are critical to the overall flow. For example, one stage for managing models could be "using Automated ML to determine the best model". 
+* After deploying the model, data posted to the endpoint and JSON output received from the endpoint as a result of deployed model. endpoint.py script also produces data.json file, which can be seen below
+![JSON output](/screenshots/image5.png)
 
-## Key Steps
-*TODO*: Write a short discription of the key steps. Remeber to include all the screenshots required to demonstrate key steps. 
+* Afterwards, as a part of the project, I run the notebook that is provided and created a pipeline
+![Pipeline](/screenshots/image6.png)
 
 ## Screen Recording
 *TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:

@@ -12,7 +12,16 @@ Aside from this approach, using notebook, I am creating, publishing and consumin
 * First, data is uploaded from given URL
 ![Data uploaded](/screenshots/image1.png)
 
-* Second, Auomated ML Experiment is run over this dataset with Classification task
+* Second, Auomated ML Experiment is run over this dataset with Classification task, and the best model is determined after when it is completed.
+![Experiment completed](/screenshots/image2.png)
+
+* Third, Best model is deployed, and endpoint is received, where "Applications Instights" is enabled by a logs.py script and with some logging retrieval
+Here is the REST endpoint
+![REST endpoint](/screenshots/image3.png)
+
+And here is the logging retrieval
+![RLogging retrieval](/screenshots/image4.png)
+
 *TODO*: Provide an architectual diagram of the project and give an introduction of each step. An architectural diagram is an image that helps visualize the flow of operations from start to finish. In this case, it has to be related to the completed project, with its various stages that are critical to the overall flow. For example, one stage for managing models could be "using Automated ML to determine the best model". 
 
 ## Key Steps

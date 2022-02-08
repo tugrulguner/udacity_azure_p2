@@ -33,6 +33,9 @@ Here is the REST endpoint
 And here is the logging retrieval
 ![RLogging retrieval](/screenshots/image4.png)
 
+* Swagger looks like this, but there is something wrong with accessing the swagger-ui (even though I tried every solution in the help section)
+![swagger](/screenshots/image10.png)
+
 * After deploying the model, data posted to the endpoint and JSON output received from the endpoint as a result of deployed model. endpoint.py script also produces data.json file, which can be seen below
 ![JSON output](/screenshots/image5.png)
 

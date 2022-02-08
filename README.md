@@ -10,7 +10,7 @@ Aside from this approach, using notebook, I am creating, publishing and consumin
 ## Architectural Diagram
 
 * First, data is uploaded from given URL
-![Data uploaded](./sample_screenshots/image1.png)
+![Data uploaded](/sample_screenshots/image1.png)
 
 * Second, Auomated ML Experiment is run over this dataset with Classification task
 *TODO*: Provide an architectual diagram of the project and give an introduction of each step. An architectural diagram is an image that helps visualize the flow of operations from start to finish. In this case, it has to be related to the completed project, with its various stages that are critical to the overall flow. For example, one stage for managing models could be "using Automated ML to determine the best model". 

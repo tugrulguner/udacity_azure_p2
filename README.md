@@ -9,7 +9,13 @@ Aside from this approach, using notebook, I am creating, publishing and consumin
 
 ## Architectural Diagram
 
+Dataset --> Model Training (using AutoML with particular task) --> Deployment (best model)
+Logging and Applications Insights --> Consume Model Endpoints
 
+OR
+
+Dataset --> Model Training (or use existing experiment) --> Create Pipelines
+Publish Pipelines --> Consume a Pipeline
 
 
 ## Key Steps
@@ -33,8 +39,15 @@ And here is the logging retrieval
 * Afterwards, as a part of the project, I run the notebook that is provided and created a pipeline
 ![Pipeline](/screenshots/image6.png)
 
-## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
+* You can check the status of pipeline after its publication, which shows active in pipeline endpoint section
+![Pipeline endpoint](/screenshots/image7.png)
 
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+* Here you can also check the used dataset with the AutoML module and Published pipeline overview
+![Pipeline rundetails](/screenshots/image9.png)
+
+* You can see the "Use RunDetails Widget" results in the notebook where Azure SDK is employed
+![Pipeline rundetails](/screenshots/image8.png)
+
+## Screen Recording
+[Video Link](https://drive.google.com/file/d/1OC5Tz9qyelTEwHEP3oeO5x3DbDIq2ep3/view?usp=sharing)
+

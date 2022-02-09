@@ -1,6 +1,3 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
-
-
 # Bankmarketing Data App
 
 In this project, I am using Azure ML to perform training and find the best model using Automated ML over bankmarketing data. Then, I am deploying the best model to the endpoints, with application insights feature in it together with logging. Finally, I consume endpoints by sending data in json format to receive predictions. 
@@ -9,40 +6,37 @@ Aside from this approach, using notebook, I am creating, publishing and consumin
 
 ## Architectural Diagram
 
-Dataset --> Model Training (using AutoML with particular task) --> Deployment (best model)
-Logging and Applications Insights --> Consume Model Endpoints
+Whoe architecture starts with uploading of the Dataset, which URL of to the dataset is used to import it in dataset component of the Azure ML. This dataset then connected to the AutoML module, which performed automated training for different models and parameters. Once it is completed, best model appears in the experiments, which allows you to deploy it to an endpoint. After its deployment, config.json is downloaded to the project folder and logs.py file is run from the terminal to enable application insights and some logging retrieval on the terminal. To check the endpoints, ```./swagger.sh``` was run from the git bash and then service.py file was run from the terminal to get access to swagger-ui on port 8000. Finally, endpoint.py is run in the project folder, where soring_uri and key were added manually and model prediction is received on the terminal by posting data to endpoint.
 
-OR
+THEN
 
-Dataset --> Model Training (or use existing experiment) --> Create Pipelines
-Publish Pipelines --> Consume a Pipeline
-
+A notebook is uploaded to notebooks section directly. In the notebook, necessary libraries and functions are imported to be able to use Azure SDK. config.json again uploaded to the same directory where notebook exists, which is required to get access to workspace. Experiments and Clusters were defined, and then data is uploaded using ```Dataset.Tabular.from_delimited_files``` from given dataset URL. It is registered and converted to pandas dataframe, which follows the configuration of AutoML. After defining PipelineData for metrics and model, these two then feed into AutoML step as outputs, which all together fed to Pipeline, and then this Pipeline run. After when training is completed as AutoML experiment, pipeline is published and consumed on an endpoint
 
 ## Key Steps
 
-* First, data is uploaded from given URL
+* First, data is uploaded from given URL by using dataset component in Azure ML portal. This allows you to see preview of the data, their types, distributions, etc like performing an initial EDA on the dataset
 ![Data uploaded](/screenshots/image1.png)
 
-* Second, Auomated ML Experiment is run over this dataset with Classification task, and the best model is determined after when it is completed.
+* Second, Automated ML Experiment is created by selectring compute instance or cluster (I selected cluster) and run over this dataset with Classification task and metrics as AUC weighted. However, exit criterion are also determined as by determining maximum hours, which I set 1 hr, and the Concurrent was set as 5 (this number should be less then the number of the compute clusters). Then best model is determined based on their predetermined metrics score after when it is completed.
 ![Experiment completed](/screenshots/image2.png)
 
-* Third, Best model is deployed, and endpoint is received, where "Applications Instights" is enabled by a logs.py script and with some logging retrieval
+* Third, Best model is deployed as a Web Service, which Azure Container Instance is selected as deployment option and "Authentication" is enabled before confirming the deployment. However, "Application Insights" is disabled at first. Python script in the project folder is then executed to enable it. While it is enabling the Application Insights, terminal showed some retrieved logging. 
 Here is the REST endpoint
 ![REST endpoint](/screenshots/image3.png)
 
 And here is the logging retrieval
 ![RLogging retrieval](/screenshots/image4.png)
 
-* Swagger looks like this, but there is something wrong with accessing the swagger-ui (even though I tried every solution in the help section)
+* To be able to get access to Swagger-ui, first swagger.json file downloaded from deployed model endpoint section in Azure ML portal under the name of Swagger URL, to swagger folder in the project. Then bash command ```./swagger.sh``` run to download and initialize docker image of swagger-ui on port 9000. When it is done, service.py run on port 8000. Finally, we can get access to Swagger-ui as shown below.
 ![swagger](/screenshots/image10.png)
 
-* After deploying the model, data posted to the endpoint and JSON output received from the endpoint as a result of deployed model. endpoint.py script also produces data.json file, which can be seen below
+* After deploying the model, and checking the endpoints with swagger, endpoint.py python script executed to receive model output on a given deployed model endpoint. It posts data to endpoint in JSON format, and terminal prints the resulting model output from the endpoint as shown below. This script also create data.json for the output, which can be found the project folder.
 ![JSON output](/screenshots/image5.png)
 
-* Afterwards, as a part of the project, I run the notebook that is provided and created a pipeline
+* Afterwards, as a part of the project, a notebook is uploaded to notebooks module in Azure ML portal to use Azure SDK. For notebook to identify workspace, config.json is downloaded. After defining experiment and compute clusters, data is uploaded and registered using dataset URL. Then PipelineData defined for metrics and model outputs, which are fed into the AutoML step together with AutoML config, and finally all fed into the Pipeline. This pipeline then run until AutoML completed.
 ![Pipeline](/screenshots/image6.png)
 
-* You can check the status of pipeline after its publication, which shows active in pipeline endpoint section
+* When the pipeline completed, it is published by selecting the corresponding pipeline and then clicking on Publish. You can check the status of pipeline after its publication, which shows active in pipeline endpoint section. You can see details about published pipeline below.
 ![Pipeline endpoint](/screenshots/image7.png)
 
 * Here you can also check the used dataset with the AutoML module and Published pipeline overview

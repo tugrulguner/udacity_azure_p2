@@ -48,3 +48,14 @@ And here is the logging retrieval
 ## Screen Recording
 [Video Link](https://drive.google.com/file/d/1OC5Tz9qyelTEwHEP3oeO5x3DbDIq2ep3/view?usp=sharing)
 
+#Written description of the screencast
+
+Here you can see the Azure ML portal homepage. It shows the recent runs, models, compute, datasets. In the run sections, we can see that there are a couple of experiments run and completed successfully. These experiments also show the type, which are Pipeline or AutoML in this case.
+
+When we click on Models section, it shows the models list and by clicking on the particular model with particular experiment, we can reach to details about the model. By clicking on endpoints we can see the deployed endpoints. When we click on the deployed endpoints, we can reach to details about deployment status, REST endpoint, Swagger URI, etc.
+
+If we click on Pipelines sections, we can list the pipelines that run, and from there, if we click on the pipeline endpoints, we can then list the published pipelines and their run and deployment status, which are finished and active in this case.
+
+By clicking on the experiments, we can list the latest runs, which are Pipeline and AutoML as we demonstrated already. By clicking on the AutoML, we can get access to Pipeline and AutoML experiment list. Then, if we click on one of them, like AutoML one, we can see the details about the best model determined, and summary related to this process. IT also shows the deployment status, which is active and succeeded.
+
+Finally, executing the endpoint.py script shows thhe response of endpoint by posting a data in JSON format to endpoint, and running this scripts runs the model and prints the model predictions, as seen in the terminal.
